@@ -1,0 +1,70 @@
+/* set default */
+html, body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Sansation';
+    background-color: #222222;
+}
+a{
+    text-decoration: none;
+}
+
+/* header */
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #113F67;
+    gap: 50%;
+    padding: 10px 200px;
+}
+.logo{
+    display: flex;
+    flex-direction: column;
+}
+.logo img{
+    height: 60px;
+}
+.logo span{
+    color: aliceblue;
+}
+header a{
+    font-weight: 500;
+    color: aliceblue;
+    align-self: center;
+}
+header a:hover{
+    font-weight: 500;
+    color: rgb(114, 188, 253);
+}
+.menu{
+    display: flex;
+    gap: 15px;
+}
+
+.main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 50px auto 10% auto;
+    width: 80%;
+    gap: 10px;
+}
+table{
+    margin: 0 auto;
+    width: 70%;
+    border-collapse: collapse;
+    background-color: #333333;
+    color: aliceblue;
+    text-align: center;
+}
+table .act a{
+    background-color: #113F67;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
