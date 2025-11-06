@@ -16,7 +16,7 @@
 <body>
     <header>
         <div class="logo">
-            <a href=""><img src="../aset/logo_e.png" alt="kedaingaso"></a>
+            <a href="../admin.php"><img src="../aset/logo_e.png" alt="kedaingaso"></a>
             <span>Admin Page</span>
         </div>
         <a href="../client/main.php">Client Side</a>
@@ -33,6 +33,8 @@
             $harga = mysqli_real_escape_string($connect, $_POST['harga']);
             $deskripsi = mysqli_real_escape_string($connect, $_POST['deskrip']);
             $dipesan = mysqli_real_escape_string($connect, $_POST['dipesan']);
+            $date = mysqli_real_escape_string($connect, $_POST['tgl']);
+            $time = mysqli_real_escape_string($connect, $_POST['waktu']);
             
             $gbr = $_FILES['gambar'];
             $gbr_id = $gbr['name'];
@@ -40,7 +42,14 @@
             $target = '../aset/'.$gbr_id;
 
             if(is_uploaded_file($gbr['tmp_name']) == false){
-                $sql = "UPDATE produk SET nama ='$nama',harga='$harga',deskrip='$deskripsi',dipesan=$dipesan WHERE id='$id'";
+                $sql = "UPDATE produk SET 
+                    nama ='$nama',
+                    harga='$harga',
+                    deskrip='$deskripsi',
+                    dipesan=$dipesan,
+                    tgl='$date',
+                    waktu='$time'
+                    WHERE id='$id'";
                 $query= mysqli_query($connect, $sql);
                 if($query){
                     echo"<script>window.location.href='../admin.php'</script>";
@@ -48,7 +57,15 @@
             }else{
                 if ($gbr_bit<300000) {
                     if(move_uploaded_file($gbr['tmp_name'],$target)){
-                    $sql = "UPDATE produk SET nama ='$nama',harga=$harga,deskrip='$deskripsi',dipesan=$dipesan, gambar='$gbr_id'";
+                    $sql = "UPDATE produk SET 
+                                nama ='$nama',
+                                harga=$harga,
+                                deskrip='$deskripsi',
+                                dipesan=$dipesan, 
+                                gambar='$gbr_id',
+                                tgl='$date', 
+                                waktu='$time' 
+                            WHERE id = $id";
                     $query= mysqli_query($connect, $sql);
                     if($query){
                     echo"<script>window.location.href='../admin.php'</script>";
@@ -74,9 +91,9 @@
                     <td><input type="text" name="nama" id="" value="<?= $p['nama']?>"></td>
                 </tr>
                 <tr>
-                    <td>Deskripsi</td>
+                    <td >Deskripsi</td>
                     <td>
-                        <textarea name="deskrip" id=""><?= $p['deskrip']?> </textarea>
+                        <textarea name="deskrip" id="", style="height: 100px;"><?= $p['deskrip']?> </textarea>
                     </td>
                 </tr>
                 <tr>
@@ -95,6 +112,12 @@
                     <td>Tanggal</td>
                     <td>
                         <input type="date" name="tgl" value="<?= $p['tgl'] ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Waktu</td>
+                    <td>
+                        <input type="time" name="waktu" value="<?= $p['waktu'] ?>">
                     </td>
                 </tr>
                 <tr>

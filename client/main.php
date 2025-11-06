@@ -19,12 +19,16 @@
         <nav>
             <ul>
                 <li><a href="">Beranda</a></li>
-                <li><a href="">Menu</a></li>
+                <li><a href="menu.php">Menu</a></li>
                 <li><a href="">Tentang Kami</a></li>
             </ul>
         </nav>
     </header>
     <div class="main">
+        <form method="GET" action="" style="text-align: center; margin: 20px 0;">
+            <input type="text" name="cari" placeholder="Cari menu..." style="padding: 8px; width: 250px;">
+            <button type="submit" style="padding: 8px 12px;">Cari</button>
+        </form>
         <div class="banner">
             <img src="" alt="banner">
         </div>
@@ -47,49 +51,31 @@
                 </div>
             </div>
         <h2>Menu Lainnya</h2>
+<div class="req">
+    <div class="best">
+        <?php
+        if (isset($_GET['cari']) && $_GET['cari'] != "") {
+            $keyword = mysqli_real_escape_string($connect, $_GET['cari']);
+            $prd = mysqli_query($connect, "SELECT * FROM produk WHERE nama LIKE '%$keyword%' ORDER BY tgl DESC");
+            echo "<p style='width:100%; text-align:center;'>Hasil pencarian untuk: <strong>" . htmlspecialchars($keyword) . "</strong></p>";
+        } else {
+            $prd = mysqli_query($connect, "SELECT * FROM produk ORDER BY tgl DESC LIMIT 5");
+        }
 
-        <!-- rekomendasi -->
-        <div class="req">
-            <div class="best">
-                <?php
-                    $prd = mysqli_query($connect, "SELECT * FROM produk ORDER BY date DESC LIMIT 5");
-                    while($p = mysqli_fetch_array($prd)):
-                    ?>
-                    <a href="#" class="menu">
-                        <div class="item">
-                        <img src="../aset/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['nama']) ?>">
-                        <h3><?= htmlspecialchars($p['nama']) ?></h3>
-                        <p>Rp.<?= number_format($p['harga'], 0, ',', '.') ?></p>
-                        <p>Dipesan <?= (int)$p['dipesan'] ?>x</p>
-                        </div>
-                    </a>
-                <?php endwhile; ?>
-                <!-- <a href="" class="menu">
-                    <div class="item">
-                        <img src="aset/item6.jpg">
-                        <h3>Sate Maranggi</h3>
-                        <p>Rp.21,500</p>
-                        <p></p>
-                    </div>
-                </a>
-                <a href="" class="menu">
-                    <div class="item">
-                        <img src="aset/item7.jpg">
-                        <h3>Nasduk Klasik</h3>
-                        <p>Rp.12,000</p>
-                        <p></p>
-                    </div>
-                </a>
-                <a href="" class="menu">
-                    <div class="item">
-                        <img src="aset/item8.jpg">
-                        <h3>Nasi Katsu Kari</h3>
-                        <p>Rp.22,000</p>
-                        <p></p>
-                    </div>
-                </a> -->
+        while ($p = mysqli_fetch_array($prd)):
+        ?>
+        <a href="#" class="menu">
+            <div class="item">
+                <img src="../aset/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['nama']) ?>">
+                <h3><?= htmlspecialchars($p['nama']) ?></h3>
+                <p>Rp.<?= number_format($p['harga'], 0, ',', '.') ?></p>
+                <p>Dipesan <?= (int)$p['dipesan'] ?>x</p>
             </div>
-        </div>
+        </a>
+        <?php endwhile; ?>
+    </div>
+</div>
+
     </div>
     <footer>
         <span>2025 &copy; Envcore Life</span>

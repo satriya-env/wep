@@ -7,7 +7,8 @@
     <?php
     include '../connect.php';
     ?>
-    <link rel="stylesheet" href="style.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/627d652163.js" crossorigin="anonymous"></script>
@@ -16,7 +17,7 @@
 <body>
     <header>
         <div class="logo">
-            <a href=""><img src="../aset/logo_e.png" alt="kedaingaso"></a>
+            <a href="../admin.php"><img src="../aset/logo_e.png" alt="kedaingaso"></a>
             <span>Admin Page</span>
         </div>
         <div class="menu">

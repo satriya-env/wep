@@ -17,12 +17,13 @@
 <body>
     <header>
         <div class="logo">
-            <a href=""><img src="aset/logo_e.png" alt="kedaingaso"></a>
+            <a href="admin.php"><img src="aset/logo_e.png" alt="kedaingaso"></a>
             <span>Admin Page</span>
         </div>
         <div class="menu">
             <a href="client/main.php">Client Side</a>
             <a href="create/create.php">Buat Produk</a>
+            <a href="produk.php">Data Produk</a>
         </div>
     </header>
     <div class="main">
@@ -50,8 +51,8 @@
             <td><?= $p['deskrip'] ?></td>
             <td><?= (int)$p['dipesan'] ?>x</td>
             <td><img src="aset/<?= $p['gambar'] ?>" width="175"></td>
-            <td><?= $p['date'] ?></td>
-            <td><?= $p['time'] ?></td>
+            <td><?= $p['tgl'] ?></td>
+            <td><?= $p['waktu'] ?></td>
             <td class="act">
             <a href="delete.php?id=<?= $p['id'] ?>" onclick="return confirm('Yakin hapus data ini?')" style="color: aliceblue;">Hapus</a>
             <a href="edit/edit.php?id=<?= $p['id'] ?>" style="color: aliceblue;">Edit</a>
